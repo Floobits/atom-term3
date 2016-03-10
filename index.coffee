@@ -94,6 +94,9 @@ config =
       foreground:
         type: 'color'
         default: '#f0f0f0'
+  backgroundSolid:
+    type: 'boolean'
+    default: true
   scrollback:
     type: 'integer'
     default: 1000
@@ -207,17 +210,18 @@ module.exports =
 
   createTermView: (forkPTY=true, rows=30, cols=80) ->
     opts =
-      runCommand    : atom.config.get 'term3.autoRunCommand'
-      shellOverride : atom.config.get 'term3.shellOverride'
-      shellArguments: atom.config.get 'term3.shellArguments'
-      titleTemplate : atom.config.get 'term3.titleTemplate'
-      cursorBlink   : atom.config.get 'term3.cursorBlink'
-      fontFamily    : atom.config.get 'term3.fontFamily'
-      fontSize      : atom.config.get 'term3.fontSize'
-      colors        : getColors()
-      forkPTY       : forkPTY
-      rows          : rows
-      cols          : cols
+      runCommand     : atom.config.get 'term3.autoRunCommand'
+      shellOverride  : atom.config.get 'term3.shellOverride'
+      shellArguments : atom.config.get 'term3.shellArguments'
+      titleTemplate  : atom.config.get 'term3.titleTemplate'
+      cursorBlink    : atom.config.get 'term3.cursorBlink'
+      backgroundSolid: atom.config.get 'term3.backgroundSolid'
+      fontFamily     : atom.config.get 'term3.fontFamily'
+      fontSize       : atom.config.get 'term3.fontSize'
+      colors         : getColors()
+      forkPTY        : forkPTY
+      rows           : rows
+      cols           : cols
 
     if opts.shellOverride
         opts.shell = opts.shellOverride

@@ -169,8 +169,11 @@ class TermView extends View
     "terminal"
 
   applyStyle: ->
-    # remove background color in favor of the atom background
-    # @term.element.style.background = null
+    # remove background color in favor of the atom background if option the
+    # backgroundSolid option is not selected
+    if !@opts.backgroundSolid
+      @term.element.style.background = null
+
     @term.element.style.fontFamily = (
       @opts.fontFamily or
       atom.config.get('editor.fontFamily') or
