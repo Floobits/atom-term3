@@ -25,6 +25,9 @@ getColors = ->
   ].map (color) -> color.toHexString()
 
 config =
+  displayTerminalsInTreeView:
+    type: 'boolean'
+    default: false
   autoRunCommand:
     type: 'string'
     default: ''
@@ -135,9 +138,10 @@ module.exports =
     @disposables.add atom.commands.add "atom-workspace", "term3:pipe-path", @pipeTerm.bind(this, 'path')
     @disposables.add atom.commands.add "atom-workspace", "term3:pipe-selection", @pipeTerm.bind(this, 'selection')
 
-    atom.packages.activatePackage('tree-view').then (treeViewPkg) =>
-      node = new ListView()
-      treeViewPkg.mainModule.treeView.find(".tree-view-scroller").prepend node
+    if atom.config.get 'term3.displayTerminalsInTreeView'
+      atom.packages.activatePackage('tree-view').then (treeViewPkg) =>
+        node = new ListView()
+        treeViewPkg.mainModule.treeView.find(".tree-view-scroller").prepend node
 
   service_0_1_3: () ->
     {
