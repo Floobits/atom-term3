@@ -39,5 +39,14 @@
         "0.1.3": "service_0_1_3"
       }
     }
+  },
+  "activationCommands": {
+    "atom-workspace": [
+      "term3:open",
+      "term3:open-split-up",
+      "term3:open-split-right",
+      "term3:open-split-down",
+      "term3:open-split-left"
+    ]
   }
 }
